@@ -1,0 +1,20 @@
+body {
+    --primary-color: #fed565;
+    --primary-color: #f9b2ce;
+    --primary-color: #5e62b7;
+    --secondary-color: #fed565;
+    --secondary-color: #5cbed5;
+    --secondary-color: #e57a54;
+    --secondary-color: #5e62b7;
+    --secondary-color: #f9b2ce;
+    --secondary-color: #696dcd;
+    --accent-color: #e87c55;
+
+    --white-color: #ffffff;
+    --black-color: #000000;
+    --grey-color: #4C4C4C;
+    --backgroundgrey-color: #F7F7F7;
+    --lightgrey-color: #A4A4A4;
+    --shadow-color: rgba(0,0,0,.16);
+    --lightshadow-color: rgba(112,112,112,.06);
+}
