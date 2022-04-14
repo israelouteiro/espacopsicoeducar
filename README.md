@@ -16,6 +16,4 @@ This is an React JS project
     $ yarn start
 ```  
 
-
-
-#### Created by [**xApps**](https://x-apps.com.br) @ 2022 
+#### Created by [**Unicorn Tech House**](https://unicorntechhouse.com) @ 2022 
