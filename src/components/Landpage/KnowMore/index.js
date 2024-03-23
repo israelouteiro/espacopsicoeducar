@@ -43,7 +43,8 @@ export default function KnowMore(){
             subtitle: 'Temas abordados: comportamento, regras, rotina, relacionamento familiar e escolar.',
             rate: 5,
             description: 'Venha conhecer de perto a família Pipoca: especialmente o Marcelo Pipoca. E descubra como regras e rotina podem ajudar na vida de uma criança. Uma deliciosa história com sabor de pipoca e muita aprendizagem!',
-            available: 'ISBN: 978-85-9506-066-1'
+            available: 'ISBN: 978-85-9506-066-1',
+            link:"https://espacopsicoeducar.com/marcelo-pipoca"
         },
     ]
  
@@ -53,8 +54,8 @@ export default function KnowMore(){
                 <Container>
                     <Row>
                         <Col>
-                            <MoreTitle>Know More :)</MoreTitle>
-                            <MoreText>Lorem ipsum dolor sit amet, consectetur adipiscing <b>elit</b></MoreText>
+                            <MoreTitle>Explorando Mentes Curiosas: Nossa Biblioteca de Livros Educativos :)</MoreTitle>
+                            <MoreText>Descubra Recursos Cativantes para Estimular o Aprendizado e o Desenvolvimento de Crianças e Adolescentes</MoreText>
                         </Col>
                     </Row> 
                     <Row>

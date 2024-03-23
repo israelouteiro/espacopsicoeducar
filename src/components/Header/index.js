@@ -33,10 +33,10 @@ export default function Header(){
             { title:'Espaço Psico Educar', active:true, action:() => navigate('') },
             // { title:'About', action:() => navigate('about') }
         ],
-        right:[ 
-            { title:'Entrar', button:true, action:() => navigate('login') },
-            { title:'Registre-se', button:true, outline:true, action:() => navigate('register') },
-        ]
+        // right:[ 
+        //     { title:'Entrar', button:true, action:() => navigate('login') },
+        //     { title:'Registre-se', button:true, outline:true, action:() => navigate('register') },
+        // ]
     }
     
     return (

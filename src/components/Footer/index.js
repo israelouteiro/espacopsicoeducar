@@ -64,7 +64,7 @@ export default function Footer(){
                     <Row>
                         <Col > 
                             <FooterCopyright>
-                                Powered by Unicorn Tech House ® 2022
+                                Powered by Unicorn Tech House ® 2024
                                 <br />
                                 <UniLogo onClick={() => window.open('https://unicorntechhouse.com', 'uni')} />
                             </FooterCopyright> 

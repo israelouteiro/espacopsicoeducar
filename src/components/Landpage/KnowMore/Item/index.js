@@ -16,9 +16,15 @@ import {
 
 export default function KnowMoreItem(props){ 
  
+    const action = () => {
+        if(props.link){
+            window.open(props.link)
+        }
+    }
+
     return ( 
         <> 
-            <KnowItem>
+            <KnowItem onClick={action} linked={!!props.link}>
                 <KnowItemImage image={ props.image } />
                 <KnowItemContent>
                     <KnowItemContentTitle>{ props.title }</KnowItemContentTitle>

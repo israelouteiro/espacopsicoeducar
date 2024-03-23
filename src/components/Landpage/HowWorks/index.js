@@ -15,52 +15,57 @@ import {
 
 export default function HowWorks(){
 
-    const [activeTab, setActive] = useState(1)
+    const [activeTab, setActive] = useState(0)
 
     const tabOptions = [
-        { title:'Lorem ipsum' },
-        { title:'Dolor sit amet' }
+        { title:'Construindo Caminhos para o Desenvolvimento Integral' },
+        { title:'Fortalecendo Vínculos, Cultivando Resiliência' }
     ]
 
     const optionsReady = [
+
+
         {
             number: '1',
-            subtitle: 'Lorem ipsum dolor sit amet',
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+            subtitle: 'Educação Emocional',
+            text: 'Priorizamos o desenvolvimento da inteligência emocional, fornecendo ferramentas e técnicas para que as crianças e adolescentes compreendam, expressem e gerenciem suas emoções de forma saudável e construtiva.'
         },
         {
             number: '2',
-            subtitle: 'Lorem ipsum dolor',
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+            subtitle: 'Grupos de Apoio',
+            text: 'Facilitamos grupos de apoio onde os participantes podem compartilhar experiências, aprender uns com os outros e construir relações de apoio mútuo em um ambiente seguro e empático.'
         },
         {
             number: '3',
-            subtitle: 'Lorem ipsum',
-            text: 'Lorem ipsum dolor sit amet, consectetur <b>adipiscing elit</b> :)'
+            subtitle: 'Integração Escola-Comunidade',
+            text: 'Trabalhamos em estreita colaboração com escolas e comunidades locais para promover uma abordagem holística no apoio ao desenvolvimento das crianças e adolescentes, buscando uma integração harmoniosa entre o ambiente escolar, familiar e social.'
         },
         {
             number: '4',
-            subtitle: 'Lorem',
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+            subtitle: 'Empoderamento e Autonomia',
+            text: 'Nosso objetivo final é capacitar cada jovem a se tornar uma pessoa autônoma, confiante e resiliente, capaz de enfrentar os desafios da vida com coragem e determinação, construindo um futuro promissor e saudável para si mesmos.'
         }
+
     ]
 
     const optionsSchedule = [
+        
         {
             number: '1',
-            subtitle: 'Lorem ipsum dolor',
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut congue nisl. Duis lobortis ante vitae hendrerit efficitur.'
+            subtitle: 'Abordagem Personalizada',
+            text: 'Nossa equipe de psicólogos e educadores se dedica a compreender as necessidades individuais de cada criança e adolescente, oferecendo um suporte emocional e estratégias adaptadas para promover seu desenvolvimento integral.'
         },
         {
             number: '2',
-            subtitle: 'Lorem ipsum',
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut congue nisl. <b>Duis lobortis ante vitae</b> hendrerit efficitur :)'
+            subtitle: 'Workshops e Atividades Lúdicas:',
+            text: 'Além das sessões individuais, proporcionamos workshops interativos e atividades lúdicas que estimulam a expressão emocional, o aprendizado e o fortalecimento das habilidades sociais, emocionais e cognitivas dos participantes.'
         },
         {
             number: '3',
-            subtitle: 'Lorem',
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut congue nisl. Duis lobortis ante vitae hendrerit efficitur.'
+            subtitle: 'Espaço de Acolhimento Familiar:',
+            text: 'Entendemos a importância do apoio familiar no processo de crescimento e desenvolvimento dos jovens. Por isso, oferecemos um ambiente acolhedor onde as famílias são incentivadas a participar ativamente, recebendo orientações e apoio para promover um ambiente saudável em casa.'
         }
+
     ]
 
     return ( 
@@ -72,7 +77,7 @@ export default function HowWorks(){
                         <Col>
                             <HowWorksTitleContent>
                                 <HowWorksTitle>Seja bem-vindo!</HowWorksTitle>
-                                <HowWorksText>Somos um espaço que impulsiona e auxilia no desenvolvimento <b>emocional</b> e <b>intelectual</b> do seu filho.</HowWorksText>
+                                <HowWorksText>É com imensa alegria e entusiasmo que abrimos as portas do Espaço PsicoEducar, um ambiente dedicado ao bem-estar e ao desenvolvimento emocional das crianças e adolescentes. Aqui, mergulhamos profundamente no universo da psicologia, trazendo consigo o propósito de promover uma jornada de autoconhecimento, crescimento e aprendizado.</HowWorksText>
                             </HowWorksTitleContent>
                             <ToggleTab options={tabOptions} active={activeTab} onClick={setActive} /> 
                         </Col>

@@ -15,7 +15,7 @@ export const CardBanner = styled.div.attrs({
 
 export const CardBannerTitle = styled.div.attrs({ 
 })`           
-    font-size: 32px;
+    font-size: 28px;
     line-height: 43px;
     font-weight: bold;
     color: var(--secondary-color);
@@ -29,9 +29,9 @@ export const CardBannerTitle = styled.div.attrs({
 
 export const CardBannerText = styled.div.attrs({ 
 })`           
-    font-size: 15px;
+    font-size: 18px;
     color: var(--grey-color);
-    margin: 12px 0 20px;
+    margin: 12px 0 32px;
     padding-right: 30px;
     b{
         color: var(--primary-color);

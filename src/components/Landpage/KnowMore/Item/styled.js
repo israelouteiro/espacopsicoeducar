@@ -8,6 +8,16 @@ export const KnowItem = styled.div.attrs({
     margin-top: 30px;
     border-radius: 5px;
     box-shadow: 0px 2px 6px var(--shadow-color);
+
+    ${
+        props => props.linked ? `
+            cursor:pointer;
+            transition: all .3s ease;
+            &:hover{
+                transform: scale(1.05);
+            }
+        ` : ``
+    }
 `; 
  
 export const KnowItemImage = styled.div.attrs({ 

@@ -22,14 +22,14 @@ export default function LittleMore(){
                     <Container>
                         <Row>
                             <Col md={{size:7}}>
-                                <MoreTitle>About</MoreTitle>
+                                <MoreTitle>Sobre</MoreTitle>
                                 <MoreLine /> 
                                 <MoreText>
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut congue nisl. Duis lobortis ante vitae hendrerit efficitur. Quisque dolor magna, efficitur et nunc id, pretium porta mauris. Integer vel lobortis risus. Duis consectetur ac ante at ullamcorper. Nullam luctus sollicitudin odio, eu gravida lorem efficitur ac. Nam pulvinar consequat cursus. Maecenas convallis sagittis erat, at tristique lectus pharetra et. In eget metus nisl. Maecenas orci ipsum, sagittis non erat eleifend, dignissim suscipit mi. Ut a tellus quis enim pellentesque fringilla. Sed in malesuada felis, eget volutpat neque.
+                                        No Espaço PsicoEducar, estamos comprometidos em fornecer um ambiente seguro e acolhedor onde crianças e adolescentes possam florescer emocionalmente. Compreendemos que cada jovem é único, com suas próprias experiências, desafios e potenciais, e é por isso que nossa abordagem é completamente personalizada.
                                     </p>
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut congue nisl. Duis lobortis ante vitae hendrerit efficitur. Quisque dolor magna, efficitur et nunc id, pretium porta mauris. Integer vel lobortis risus. Duis consectetur ac ante at ullamcorper. Nullam luctus sollicitudin odio, eu gravida lorem efficitur ac. Nam pulvinar consequat cursus. Maecenas convallis sagittis erat, at tristique lectus pharetra et. In eget metus nisl. Maecenas orci ipsum, sagittis non erat eleifend, dignissim suscipit mi. Ut a tellus quis enim pellentesque fringilla. Sed in malesuada felis, eget volutpat neque.
+                                        Nossos profissionais altamente qualificados e empáticos trabalham em estreita colaboração com os jovens e suas famílias, oferecendo suporte emocional, orientação e estratégias práticas para ajudá-los a enfrentar os desafios da vida cotidiana. Acreditamos que a educação emocional é fundamental para o crescimento saudável, e é por isso que integramos atividades lúdicas, workshops interativos e grupos de apoio em nossos serviços.
                                     </p>
                                 </MoreText> 
                             </Col>

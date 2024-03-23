@@ -21,7 +21,8 @@ export const TabsContainer = styled.div.attrs({
 
 export const TabItem = styled.div.attrs({ 
 })`          
-    width: 220px; 
+    width: 100%;
+    max-width: 500px; 
     min-height: 59px;
     display: flex;
     justify-content: center;

@@ -14,31 +14,32 @@ import {
 export default function CommomCases(){ 
 
     const commomLeft = [
-        { title: 'Lorem ipsum dolor sit amet'},
-        { title: 'Consectetur adipiscing elit'},
-        { title: 'Curabitur ut congue nisl'},
-        { title: 'Duis lobortis ante'},
-        { title: 'Vitae hendrerit efficitur'},
-        { title: 'Quisque dolor magna'},
-        { title: 'Efficitur et nunc id'},
-        { title: 'Pretium porta mauris'},
-        { title: 'Integer vel lobortis risus'},
-        { title: 'Duis consectetur ac ante at ullamcorper'},
-        { title: 'Nullam luctus sollicitudin odio'}
+        { title:"Um refúgio para mentes jovens." },
+        { title:"Acolhimento e crescimento." },
+        { title:"Onde a curiosidade floresce." },
+        { title:"Cuidado e compreensão em cada sessão." },
+        { title:"Promovendo um ambiente de aprendizado positivo." },
+        { title:"Cada criança é única, cada jornada é valorizada." },
+        { title:"Construindo confiança, cultivando resiliência." },
+        { title:"Aqui, o bem-estar emocional vem em primeiro lugar." },
+        { title:"Explorando emoções, nutrindo habilidades." },
+        { title:"Um espaço seguro para expressão e descoberta." },
+        { title:"Criando conexões que inspiram crescimento." },
+
+        { title:"Juntos, construímos um caminho para um amanhã melhor." },
     ]
 
     const commomRight = [ 
-        { title: 'Nullam luctus sollicitudin odio'},
-        { title: 'Duis consectetur ac ante at ullamcorper'},
-        { title: 'Integer vel lobortis risus'},
-        { title: 'Pretium porta mauris'},
-        { title: 'Efficitur et nunc id'},
-        { title: 'Quisque dolor magna'},
-        { title: 'Vitae hendrerit efficitur'},
-        { title: 'Duis lobortis ante'},
-        { title: 'Curabitur ut congue nisl'},
-        { title: 'Consectetur adipiscing elit'},
-        { title: 'Lorem ipsum dolor sit amet'},
+        { title:"Onde os desafios se transformam em oportunidades." },
+        { title:"Aprendendo juntos, crescendo juntos." },
+        { title:"Incentivando a autonomia e a autoestima." },
+        { title:"Construindo um futuro mais brilhante, um passo de cada vez." },
+        { title:"Valorizamos cada sorriso, cada lágrima, cada conquista." },
+        { title:"Um lugar onde os sonhos ganham asas." },
+        { title:"Desenvolvendo mentes criativas e corações compassivos." },
+        { title:"Nosso compromisso é com o seu bem-estar." },
+        { title:"Aqui, todos são bem-vindos e ouvidos." },
+        { title:"Transformando desafios em oportunidades de crescimento." },
     ]
 
     return ( 
@@ -48,7 +49,7 @@ export default function CommomCases(){
                 <Container>
                     <Row>
                         <Col>
-                            <CommomTitle> Lorem ipsum dolor sit amet</CommomTitle>
+                            <CommomTitle> Imersão no Mundo do Desenvolvimento Infantil e Adolescente </CommomTitle>
                         </Col>
                     </Row>
                     <Row>
