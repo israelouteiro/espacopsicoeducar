@@ -1,25 +1,25 @@
-import React from "react"; 
+import React from "react";
 
-import { Row, Col, Container } from 'reactstrap'; 
- 
+import { Row, Col, Container } from 'reactstrap';
+
 import CardSelect from 'components/Landpage/Card/Select'
 
-import { 
+import {
     BannerImage,
     BannerOut,
     BannerContent
-} from "./styled"; 
+} from "./styled";
 
 export default function Banner(){
-    return ( 
-        <> 
+    return (
+        <>
             <BannerImage>
                 <BannerOut />
                 <BannerContent>
                     <Container>
-                        <Row>
-                            <Col md={{ size: 6 }}> 
-                                <CardSelect /> 
+                        <Row className="align-items-center">
+                            <Col md={{ size: 7 }}>
+                                <CardSelect />
                             </Col>
                         </Row>
                     </Container>

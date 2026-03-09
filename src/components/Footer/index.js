@@ -1,75 +1,71 @@
-import React from "react"; 
+import React from "react";
 
-import { Row, Col, Container } from 'reactstrap'; 
-import { useHistory } from 'react-router-dom';
+import { Row, Col, Container } from 'reactstrap';
 
 import {
     FooterContainer,
+    FooterSurface,
+    FooterBottom,
+    FooterBrand,
     FooterLogo,
     FooterTitle,
+    FooterSubtitle,
     FooterText,
     FooterLink,
-    FooterLinkImage,
     FooterSection,
-    FooterPhoneContent,
-    FooterPhoneIcon,
+    FooterStack,
+    FooterLabel,
     FooterCopyright,
     UniLogo
-} from './styled' 
+} from './styled'
 
-export default function Footer(){ 
- 
-    const history = useHistory();
-    const navigate = to => history.push(`/${ to }`);
+export default function Footer(){
 
-    return ( 
-        <> 
+    return (
+        <>
             <FooterContainer>
                 <Container>
-                    <Row>
-                        <Col md={{size:5}}>
-                            <FooterLogo />
-                            <FooterTitle>Espaço Psico Educar</FooterTitle>
-                            <FooterText>Quadra 7 - Bloco F, sala 207 - Sobradinho/DF</FooterText>
-                            <FooterPhoneContent>
-                                <FooterPhoneIcon />
-                                <FooterLink>(61) 98344-7457</FooterLink>
-                            </FooterPhoneContent>
-                        </Col>
-                        <Col md={{size:7}}>
-                            <Row>
-                                <Col md={{size:6}}>
-                                    <FooterSection>
-                                        <FooterTitle>&nbsp;</FooterTitle>
-                                        {/* <FooterLink onClick={() => navigate('')}>Landpage</FooterLink> */}
-                                        {/* <FooterLink onClick={() => navigate('about')}>About</FooterLink> */}
-                                    </FooterSection>
-                                </Col>
-                                <Col md={{size:6}}> 
-                                    <FooterSection>
-                                        <FooterTitle>Follow us</FooterTitle>
+                    <FooterSurface>
+                        <Row className="g-4 g-lg-5 align-items-start">
+                            <Col lg={{size:6}}>
+                                <FooterBrand>
+                                    <FooterLogo />
+                                    <div>
+                                        <FooterSubtitle>Espaco Psico Educar</FooterSubtitle>
+                                        <FooterTitle>Psicoeducacao com metodo, afeto e visao de futuro.</FooterTitle>
+                                    </div>
+                                </FooterBrand>
+                                <FooterText>Quadra 7 - Bloco F, sala 207 - Sobradinho/DF</FooterText>
+                            </Col>
+                            <Col sm={{size:6}} lg={{size:3}}>
+                                <FooterSection>
+                                    <FooterLabel>Contato</FooterLabel>
+                                    <FooterStack>
+                                        <FooterLink onClick={() => window.open('https://wa.me/5561983447457', 'whatsapp')}>
+                                            WhatsApp: (61) 98344-7457
+                                        </FooterLink>
+                                        <FooterText>Atendimento para familias, criancas e adolescentes.</FooterText>
+                                    </FooterStack>
+                                </FooterSection>
+                            </Col>
+                            <Col sm={{size:6}} lg={{size:3}}>
+                                <FooterSection>
+                                    <FooterLabel>Canais</FooterLabel>
+                                    <FooterStack>
                                         <FooterLink onClick={() => window.open('https://instagram.com/espacopsicoeeducar', 'instagram')}>
-                                            <FooterLinkImage src={'/icons/insta.svg'} />
                                             Instagram
                                         </FooterLink>
-                                        {/* <FooterLink>
-                                            <FooterLinkImage src={'/icons/face.svg'} />
-                                            Facebook
-                                        </FooterLink>  */}
-                                    </FooterSection>
-                                </Col>
-                            </Row>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col > 
-                            <FooterCopyright>
-                                Powered by Unicorn Tech House ® 2024
-                                <br />
-                                <UniLogo onClick={() => window.open('https://unicorntechhouse.com', 'uni')} />
-                            </FooterCopyright> 
-                        </Col> 
-                    </Row>
+                                        <FooterText>Conteudos, novidades e orientacoes em linguagem acessivel.</FooterText>
+                                    </FooterStack>
+                                </FooterSection>
+                            </Col>
+                        </Row>
+                    </FooterSurface>
+
+                    <FooterBottom>
+                        <FooterCopyright>Powered by Unicorn Tech House ® 2026</FooterCopyright>
+                        <UniLogo onClick={() => window.open('https://unicorntechhouse.com', 'uni')} />
+                    </FooterBottom>
                 </Container>
             </FooterContainer>
         </>

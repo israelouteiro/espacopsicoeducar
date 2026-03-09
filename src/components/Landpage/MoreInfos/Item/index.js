@@ -10,7 +10,7 @@ export default function MoreInfosItem(props){
 
     return ( 
         <> 
-            <MoreInfosItemContent secondary={props.secondary}>
+            <MoreInfosItemContent secondary={props.secondary} variant={props.variant}>
                 <MoreInfosImage image={props.image} />
                 <MoreInfosItemText>
                     { props.title }

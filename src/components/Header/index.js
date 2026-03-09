@@ -1,97 +1,173 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 
-import { Row, Col, Container } from 'reactstrap'; 
-import { useHistory } from 'react-router-dom';
- 
-import { 
+import { Row, Col, Container } from 'reactstrap';
+
+import {
     HeaderContainer,
     RowCenter,
-    RowEnd,
     AppLogo,
     HeaderLeftMenu,
     HeaderMenuItem,
     HeaderMobile,
     MenuIcon,
+    HeaderMobileOverlay,
     HeaderMobileMenu,
+    HeaderMobileAction,
+    HeaderMobileClose,
+    HeaderMobileCloseIcon,
     HeaderMobileItem
 } from './styled';
 
-import { 
-    Touch,
-    ButtonWhite
+import {
+    Touch
 } from 'ui/styled';
 
+const sections = [
+    { id: 'inicio', title: 'Inicio' },
+    { id: 'metodologia', title: 'Metodologia' },
+    { id: 'pratica', title: 'Pratica' },
+    { id: 'conceito', title: 'Conceito' },
+    { id: 'biblioteca', title: 'Biblioteca' },
+    { id: 'quem-somos', title: 'Quem Somos' },
+    { id: 'contato', title: 'Contato' }
+]
+
 export default function Header(){
-    
+
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-    const history = useHistory();
+    const [activeSection, setActiveSection] = useState('inicio')
+    const [scrolled, setScrolled] = useState(false)
 
-    const navigate = to => history.push(`/${ to }`);
+    const scrollToSection = (id) => {
+        const target = document.getElementById(id)
 
-    const options = {
-        left:[
-            { title:'Espaço Psico Educar', active:true, action:() => navigate('') },
-            // { title:'About', action:() => navigate('about') }
-        ],
-        // right:[ 
-        //     { title:'Entrar', button:true, action:() => navigate('login') },
-        //     { title:'Registre-se', button:true, outline:true, action:() => navigate('register') },
-        // ]
+        if(id === 'inicio'){
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+            setMobileMenuOpen(false)
+            return
+        }
+
+        if(target){
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+
+        setMobileMenuOpen(false)
     }
-    
+
+    useEffect(() => {
+        const onScroll = () => {
+            const y = window.scrollY || 0
+            const marker = y + 150
+
+            setScrolled(y > 24)
+
+            let current = 'inicio'
+            sections.forEach(({ id }) => {
+                const element = document.getElementById(id)
+                if(element && marker >= element.offsetTop){
+                    current = id
+                }
+            })
+
+            setActiveSection(current)
+        }
+
+        onScroll()
+        window.addEventListener('scroll', onScroll, { passive: true })
+        return () => window.removeEventListener('scroll', onScroll)
+    }, [])
+
+    useEffect(() => {
+        if(!mobileMenuOpen){
+            return undefined
+        }
+
+        const previousOverflow = document.body.style.overflow
+        document.body.style.overflow = 'hidden'
+
+        return () => {
+            document.body.style.overflow = previousOverflow
+        }
+    }, [mobileMenuOpen])
+
+    useEffect(() => {
+        const onResize = () => {
+            if(window.innerWidth > 1100){
+                setMobileMenuOpen(false)
+            }
+        }
+
+        window.addEventListener('resize', onResize)
+        return () => window.removeEventListener('resize', onResize)
+    }, [])
+
     return (
         <>
-            <HeaderContainer>
+            <HeaderContainer scrolled={scrolled}>
                 <Container fluid>
                     <Row>
-                        <Col md={{ size:7 }}> 
+                        <Col>
                             <RowCenter>
-                                <AppLogo />
+                                <AppLogo onClick={() => scrollToSection('inicio')} />
+
                                 <HeaderLeftMenu>
                                     {
-                                        options?.left?.map((item, key) => item.button ? 
-                                            <ButtonWhite key={key} outline={item.outline} onClick={item.action}>{ item.title }</ButtonWhite> 
-                                                :
-                                            <HeaderMenuItem key={key} active={item.active} onClick={item.action}>{ item.title }</HeaderMenuItem>
-                                        )
-                                    } 
+                                        sections.map((item) => (
+                                            <HeaderMenuItem
+                                                key={item.id}
+                                                active={activeSection === item.id}
+                                                onClick={() => scrollToSection(item.id)}
+                                            >
+                                                { item.title }
+                                            </HeaderMenuItem>
+                                        ))
+                                    }
                                 </HeaderLeftMenu>
+
                                 <HeaderMobile>
                                     <Touch className="touch" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-                                        <MenuIcon />
+                                        <MenuIcon
+                                            opened={mobileMenuOpen}
+                                            dark={scrolled || activeSection !== 'inicio'}
+                                        />
                                     </Touch>
-                                    {
-                                        mobileMenuOpen ? 
-                                            <HeaderMobileMenu>
-                                                {
-                                                    [...options?.left, ...options?.right]?.map((item, key) => item.button ? 
-                                                        <HeaderMobileItem key={key} centred> 
-                                                            <ButtonWhite outline={item.outline} nomargin onClick={item.action}>{ item.title }</ButtonWhite> 
-                                                        </HeaderMobileItem>
-                                                            :
-                                                        <HeaderMobileItem key={key} active={item.active} onClick={item.action}>{ item.title }</HeaderMobileItem>
-                                                    )
-                                                }  
-                                            </HeaderMobileMenu>
-                                        : null
-                                    }
                                 </HeaderMobile>
-                            </RowCenter> 
-                        </Col>
-                        <Col md={{ size:5 }}>
-                            <RowEnd>
-                                {
-                                    options?.right?.map((item, key) => item.button ? 
-                                        <ButtonWhite key={key} outline={item.outline} onClick={item.action}>{ item.title }</ButtonWhite> 
-                                            :
-                                        <HeaderMenuItem key={key} className={item.active ? "active" : ""} onClick={item.action}>{ item.title }</HeaderMenuItem>
-                                    )
-                                } 
-                            </RowEnd>
+                            </RowCenter>
                         </Col>
                     </Row>
                 </Container>
             </HeaderContainer>
+            {
+                mobileMenuOpen && typeof document !== 'undefined'
+                    ? createPortal(
+                        <HeaderMobileOverlay onClick={() => setMobileMenuOpen(false)}>
+                            <HeaderMobileMenu onClick={(e) => e.stopPropagation()}>
+                                <HeaderMobileAction>
+                                    <HeaderMobileClose
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        aria-label="Fechar menu"
+                                        title="Fechar menu"
+                                    >
+                                        <HeaderMobileCloseIcon />
+                                    </HeaderMobileClose>
+                                </HeaderMobileAction>
+                                {
+                                    sections.map((item) => (
+                                        <HeaderMobileItem
+                                            key={item.id}
+                                            active={activeSection === item.id}
+                                            onClick={() => scrollToSection(item.id)}
+                                        >
+                                            { item.title }
+                                        </HeaderMobileItem>
+                                    ))
+                                }
+                            </HeaderMobileMenu>
+                        </HeaderMobileOverlay>,
+                        document.body
+                    ) : null
+            }
         </>
     )
 }

@@ -1,21 +1,25 @@
-import React from "react";  
-import { 
+import React from "react";
+import {
     HowWorkStep,
     HowWorkStepNumber,
+    HowWorkScope,
     HowWorkStepTitle,
-    HowWorkStepLine,
-    HowWorkStepText
-} from "./styled"; 
+    HowWorkStepText,
+    HowWorkDot,
+    HowWorkConnector
+} from "./styled";
 
-export default function HowWorksItem(props){ 
-    return ( 
-        <> 
-            <HowWorkStep>
-                <HowWorkStepNumber variant={props.variant}>{props.number}</HowWorkStepNumber>
+export default function HowWorksItem(props){
+    return (
+        <>
+            <HowWorkStep side={props.side}>
+                <HowWorkDot side={props.side} />
+                <HowWorkConnector side={props.side} />
+                <HowWorkStepNumber>{props.number}</HowWorkStepNumber>
+                <HowWorkScope>{props.scope}</HowWorkScope>
                 <HowWorkStepTitle>{props.subtitle}</HowWorkStepTitle>
-                <HowWorkStepLine />
                 <HowWorkStepText dangerouslySetInnerHTML={{ __html:props.text }} />
-            </HowWorkStep> 
+            </HowWorkStep>
         </>
     );
 }

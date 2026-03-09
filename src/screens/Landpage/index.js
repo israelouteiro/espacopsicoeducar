@@ -13,13 +13,24 @@ export default function Landpage(){
  
     return ( 
         <ContainerLandpage> 
-
-                <Banner /> 
-                <HowWorks /> 
-                <MoreInfos />
-                <CommomCases /> 
-                <KnowMore /> 
-                <LittleMore />  
+                <section id="inicio" data-land-section>
+                    <Banner />
+                </section>
+                <section id="metodologia" data-land-section>
+                    <HowWorks />
+                </section>
+                <section id="pratica" data-land-section>
+                    <MoreInfos />
+                </section>
+                <section id="conceito" data-land-section>
+                    <CommomCases />
+                </section>
+                <section id="biblioteca" data-land-section>
+                    <KnowMore />
+                </section>
+                <section id="quem-somos" data-land-section>
+                    <LittleMore />
+                </section>
  
         </ContainerLandpage>
     );

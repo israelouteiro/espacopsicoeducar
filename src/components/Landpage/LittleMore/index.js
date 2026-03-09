@@ -1,46 +1,63 @@
-import React from "react"; 
+import React from "react";
 
-import { Row, Col, Container } from 'reactstrap'; 
+import { Row, Col, Container } from 'reactstrap';
 
 import {
     MoreContainer,
-    MoreRow,
+    MoreTag,
     MoreTitle,
-    MoreLine,
     MoreText,
-    MoreLogoCircle,
-    MoreLogo,
+    MoreVisual,
+    MoreVisualHeader,
+    MoreVisualEyebrow,
+    MoreVisualTitle,
+    MoreVisualList,
+    MoreVisualItem,
+    MoreVisualImage,
     MoreDecoration
-} from './styled' 
+} from './styled'
 
-export default function LittleMore(){ 
- 
-    return ( 
-        <> 
+export default function LittleMore(){
+
+    return (
+        <>
             <MoreContainer>
-                <MoreRow>
-                    <Container>
-                        <Row>
-                            <Col md={{size:7}}>
-                                <MoreTitle>Sobre</MoreTitle>
-                                <MoreLine /> 
-                                <MoreText>
-                                    <p>
-                                        No Espaço PsicoEducar, estamos comprometidos em fornecer um ambiente seguro e acolhedor onde crianças e adolescentes possam florescer emocionalmente. Compreendemos que cada jovem é único, com suas próprias experiências, desafios e potenciais, e é por isso que nossa abordagem é completamente personalizada.
-                                    </p>
-                                    <p>
-                                        Nossos profissionais altamente qualificados e empáticos trabalham em estreita colaboração com os jovens e suas famílias, oferecendo suporte emocional, orientação e estratégias práticas para ajudá-los a enfrentar os desafios da vida cotidiana. Acreditamos que a educação emocional é fundamental para o crescimento saudável, e é por isso que integramos atividades lúdicas, workshops interativos e grupos de apoio em nossos serviços.
-                                    </p>
-                                </MoreText> 
-                            </Col>
-                            <Col md={{size:5}}>
-                                <MoreLogoCircle>
-                                    <MoreLogo />
-                                </MoreLogoCircle>
-                            </Col>
-                        </Row>
-                    </Container>
-                </MoreRow>
+                <Container>
+                    <Row className="align-items-center g-4 g-lg-5">
+                        <Col md={{size:7}}>
+                            <MoreTag>INSTITUCIONAL</MoreTag>
+                            <MoreTitle>Quem somos</MoreTitle>
+                            <MoreText>
+                                <p>
+                                    O Espaço PsicoEducar é um núcleo especializado no desenvolvimento emocional e
+                                    psicoeducacional de crianças e adolescentes. Nossa atuação combina rigor técnico,
+                                    acolhimento e comunicação contemporânea para atender as demandas reais das famílias.
+                                </p>
+                                <p>
+                                    Trabalhamos com planos individualizados, metas claras e acompanhamento contínuo,
+                                    valorizando a parceria com responsáveis e escola. Nosso compromisso é formar jovens
+                                    mais conscientes, autônomos e preparados para os desafios do presente e do futuro.
+                                </p>
+                            </MoreText>
+                        </Col>
+                        <Col md={{size:5}}>
+                            <MoreVisual>
+                                <MoreVisualHeader>
+                                    <div>
+                                        <MoreVisualEyebrow>Espaco Psico Educar</MoreVisualEyebrow>
+                                        <MoreVisualTitle>Cuidado emocional com metodo e direcao.</MoreVisualTitle>
+                                    </div>
+                                </MoreVisualHeader>
+                                <MoreVisualList>
+                                    <MoreVisualItem>Planos individualizados com metas claras.</MoreVisualItem>
+                                    <MoreVisualItem>Equipe multiprofissional e linguagem atual.</MoreVisualItem>
+                                    <MoreVisualItem>Parceria ativa entre familia, escola e jovem.</MoreVisualItem>
+                                </MoreVisualList>
+                                <MoreVisualImage />
+                            </MoreVisual>
+                        </Col>
+                    </Row>
+                </Container>
                 <MoreDecoration />
             </MoreContainer>
         </>

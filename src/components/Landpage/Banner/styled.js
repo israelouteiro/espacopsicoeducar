@@ -1,42 +1,64 @@
-import styled from 'styled-components' 
+import styled from 'styled-components'
 
-export const BannerImage = styled.div.attrs({ 
-})`           
-
+export const BannerImage = styled.div.attrs({
+})`
     position: relative;
-    min-height: 770px;
+    min-height: 100vh;
+    min-height: 100svh;
     width: 100%;
-
-    background: white url(/images/banner-2.jpg) no-repeat top +35% right / cover;
-
-    border-bottom-left-radius: 50% 80px;
-    border-bottom-right-radius: 50% 80px;
     overflow: hidden;
-`; 
+    background: linear-gradient(120deg, rgba(8, 24, 47, 0.54), rgba(14, 33, 59, 0.34)),
+        url(/images/gpt/hero-therapy.png) no-repeat center center / cover;
 
-export const BannerOut = styled.div.attrs({ 
-})`            
-    min-height: 770px;
+    &::before{
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(8, 20, 40, 0.34) 0%, rgba(8, 20, 40, 0.1) 44%, rgba(8, 20, 40, 0.56) 100%);
+        pointer-events: none;
+    }
+
+    @media(max-width: 767px){
+        min-height: 94vh;
+        min-height: 94svh;
+    }
+`;
+
+export const BannerOut = styled.div.attrs({
+})`
+    min-height: 100vh;
+    min-height: 100svh;
     width: 100%;
+    background: transparent;
 
-    background: var(--shadow-color); 
-    mix-blend-mode: multiply;
-`; 
+    @media(max-width: 767px){
+        min-height: 94vh;
+        min-height: 94svh;
+    }
+`;
 
-export const BannerContent = styled.div.attrs({ 
-})`           
-    min-height: 770px;
-    width: 100%; 
-
-    background: -moz-linear-gradient(90deg, var(--secondary-color) -10%, rgba(41,28,68,0) 110%);
-    background: -webkit-linear-gradient(90deg, var(--secondary-color) -10%, rgba(41,28,68,0) 110%);
-    background: linear-gradient(90deg, var(--secondary-color) -10%, rgba(41,28,68,0) 110%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="var(--secondary-color)",endColorstr="rgba(41,28,68,0)",GradientType=1);
+export const BannerContent = styled.div.attrs({
+})`
+    min-height: 100vh;
+    min-height: 100svh;
+    width: 100%;
     position: absolute;
-    top: 0;
-    left: 0;
-`; 
+    inset: 0;
+    background: linear-gradient(97deg, rgba(6, 18, 34, 0.72) 0%, rgba(6, 18, 34, 0.35) 48%, rgba(6, 18, 34, 0.04) 100%);
 
-export const BannerCard = styled.div.attrs({ 
-})`           
-`; 
+    display: flex;
+    align-items: center;
+
+    > .container{
+        width: 100%;
+    }
+
+    @media(max-width: 767px){
+        min-height: 94vh;
+        min-height: 94svh;
+        background: linear-gradient(180deg, rgba(6, 18, 34, 0.75) 0%, rgba(6, 18, 34, 0.32) 64%, rgba(6, 18, 34, 0.14) 100%);
+    }
+`;
+
+export const BannerCard = styled.div.attrs({
+})``;

@@ -1,0 +1,88 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate required secrets
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          EC2_IP: ${{ secrets.EC2_IP }}
+        run: |
+          if [ -z "$SSH_PRIVATE_KEY" ]; then
+            echo "A variavel SSH_PRIVATE_KEY nao esta definida. Abortando workflow."
+            exit 1
+          fi
+          if [ -z "$EC2_IP" ]; then
+            echo "A variavel EC2_IP nao esta definida. Abortando workflow."
+            exit 1
+          fi
+
+  build:
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+          cache-dependency-path: yarn.lock
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Build app
+        run: CI=false yarn build
+
+      - name: Upload dist artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+          if-no-files-found: error
+          retention-days: 1
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download dist artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      - name: Install SSH client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openssh-client
+
+      - name: Configure SSH key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          echo "$SSH_PRIVATE_KEY" > /tmp/server.pem
+          chmod 400 /tmp/server.pem
+
+      - name: Copy build artifact to EC2
+        env:
+          EC2_IP: ${{ secrets.EC2_IP }}
+        run: |
+          scp -o StrictHostKeyChecking=no -i /tmp/server.pem -r dist ubuntu@$EC2_IP:/tmp/
+
+      - name: Deploy on EC2
+        env:
+          EC2_IP: ${{ secrets.EC2_IP }}
+        run: |
+          ssh -o StrictHostKeyChecking=no -i /tmp/server.pem ubuntu@$EC2_IP \
+            "sudo rm -rf /var/www/html/espacopsicoeducar && sudo mv /tmp/dist /tmp/espacopsicoeducar && sudo mv /tmp/espacopsicoeducar /var/www/html && sudo chmod -R 755 /var/www/html/espacopsicoeducar"

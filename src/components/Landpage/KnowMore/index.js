@@ -1,73 +1,96 @@
-import React from "react"; 
+import React from "react";
 
-import { Row, Col, Container } from 'reactstrap'; 
+import { Row, Col, Container } from 'reactstrap';
 
 import Item from './Item'
 
 import {
     MoreTitle,
     MoreText,
-    KnowContent
-} from './styled' 
+    KnowContent,
+    KnowTimeline
+} from './styled'
 
-export default function KnowMore(){ 
+export default function KnowMore(){
 
     const doctors = [
         {
             image: '/images/books/book-1.png',
             title: 'O que é o que é?',
-            subtitle: 'Temas abordados: adivinhas, noção espacial, noção de grandeza, formas geométricas.',
+            subtitle: 'Foco pedagógico: linguagem, lógica, noção espacial e criatividade.',
             rate: 5,
-            description: 'Pode ser uma bolinha, ou um bicho qualquer. Parece ser um prendedor, ou um leque. Pode ser grande ou pequeno, alto ou baixo Vamos começar a brincadeira o que é, o que é?',
+            description: 'Uma proposta lúdica que amplia vocabulário, pensamento simbólico e curiosidade intelectual, com perguntas que convidam crianças e adultos a aprender juntos.',
             available: 'ISBN: 978-85-8415-104-2'
         },
         {
             image: '/images/books/book-2.png',
             title: 'Rápido como foguete',
-            subtitle: 'Temas abordados: Imaginação, planetas, números, brincadeiras.',
+            subtitle: 'Foco pedagógico: imaginação, números, planetas e sequências.',
             rate: 5,
-            description: 'Que tal viajar pelo fascinante mundo dos números? Primeiro abrimos este livro e depois... iremos à escola, à rua, ao parque, rumo ao espaço, passando por lugares incríveis. E então... vamos todos juntos nessa aventura?',
+            description: 'Uma jornada narrativa que incentiva raciocínio matemático e exploração criativa, conectando brincadeira, conhecimento e vínculo familiar.',
             available: 'ISBN: 978-85-8415-101-1'
         },
         {
             image: '/images/books/book-3.png',
             title: 'No Meio Feito Recheio',
-            subtitle: 'Temas abordados: relacionamento familiar, autoestima.',
+            subtitle: 'Foco socioemocional: autoestima, família e pertencimento.',
             rate: 5,
-            description: '“No Meio Feito Recheio” é uma história deliciosa, que fala dos sentimentos de um menino de quase quatro anos que está prestes a ganhar um irmãozinho. Mil interrogações começam a borbulhar em sua cabeça. E ele, junto com a mamãe, encontrará uma forma para solucionar esse problemão. Você vai amar a maneira afetuosa com que essas questões serão resolvidas.',
+            description: 'A história acolhe sentimentos comuns da infância diante de mudanças familiares e oferece uma linguagem afetiva para conversas importantes em casa.',
             available: 'ISBN: 978-85-7671-303-6'
         },
         {
             image: '/images/books/book-4.png',
             title: 'Marcelo Pipoca',
-            subtitle: 'Temas abordados: comportamento, regras, rotina, relacionamento familiar e escolar.',
+            subtitle: 'Foco comportamental: rotina, regras e convivência escolar.',
             rate: 5,
-            description: 'Venha conhecer de perto a família Pipoca: especialmente o Marcelo Pipoca. E descubra como regras e rotina podem ajudar na vida de uma criança. Uma deliciosa história com sabor de pipoca e muita aprendizagem!',
+            description: 'Um recurso prático para trabalhar limites com leveza, fortalecendo autonomia e organização sem perder afeto e senso de pertencimento.',
             available: 'ISBN: 978-85-9506-066-1',
             link:"https://espacopsicoeducar.com/marcelo-pipoca"
         },
     ]
- 
-    return ( 
-        <> 
+
+    const orderedTitles = [
+        'Marcelo Pipoca',
+        'No Meio Feito Recheio',
+        'Rápido como foguete',
+        'O que é o que é?'
+    ]
+
+    const orderedBooks = orderedTitles
+        .map((title) => doctors.find((item) => item.title === title))
+        .filter(Boolean)
+
+    return (
+        <>
             <KnowContent>
                 <Container>
                     <Row>
                         <Col>
-                            <MoreTitle>Explorando Mentes Curiosas: Nossa Biblioteca de Livros Educativos :)</MoreTitle>
-                            <MoreText>Descubra Recursos Cativantes para Estimular o Aprendizado e o Desenvolvimento de Crianças e Adolescentes</MoreText>
+                            <MoreTitle>Biblioteca viva: repertório para ler, dialogar e evoluir.</MoreTitle>
+                            <MoreText>
+                                Curadoria em formato editorial para famílias que desejam aprofundar temas de desenvolvimento
+                                e para jovens que aprendem melhor quando o conteúdo faz sentido na vida real.
+                            </MoreText>
                         </Col>
-                    </Row> 
-                    <Row>
-                        {
-                            doctors.map((item, key) => 
-                                <Col key={key} md={{ size:6 }}> 
-                                    <Item {...item} />
-                                </Col>
-                            )
-                        }
-                    </Row>  
-                </Container> 
+                    </Row>
+                    <Row className="g-4 g-lg-5">
+                        <Col md={{ size: 12 }}>
+                            <KnowTimeline>
+                                {
+                                    orderedBooks.map((item, key) =>
+                                        <Item
+                                            key={item.title}
+                                            {...item}
+                                            featured={item.title === 'Marcelo Pipoca'}
+                                            index={key}
+                                            side={key % 2 === 0 ? 'left' : 'right'}
+                                        />
+                                    )
+                                }
+                            </KnowTimeline>
+                        </Col>
+                    </Row>
+                </Container>
             </KnowContent>
         </>
     );
