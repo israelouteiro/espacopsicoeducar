@@ -44,11 +44,11 @@ jobs:
       - name: Build app
         run: CI=false yarn build
 
-      - name: Upload dist artifact
+      - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: dist
-          path: dist
+          name: build
+          path: build
           if-no-files-found: error
           retention-days: 1
 
@@ -56,11 +56,11 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Download dist artifact
+      - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
-          name: dist
-          path: dist
+          name: build
+          path: build
 
       - name: Install SSH client
         run: |
@@ -78,11 +78,11 @@ jobs:
         env:
           EC2_IP: ${{ secrets.EC2_IP }}
         run: |
-          scp -o StrictHostKeyChecking=no -i /tmp/server.pem -r dist ubuntu@$EC2_IP:/tmp/
+          scp -o StrictHostKeyChecking=no -i /tmp/server.pem -r build ubuntu@$EC2_IP:/tmp/
 
       - name: Deploy on EC2
         env:
           EC2_IP: ${{ secrets.EC2_IP }}
         run: |
           ssh -o StrictHostKeyChecking=no -i /tmp/server.pem ubuntu@$EC2_IP \
-            "sudo rm -rf /var/www/html/espacopsicoeducar && sudo mv /tmp/dist /tmp/espacopsicoeducar && sudo mv /tmp/espacopsicoeducar /var/www/html && sudo chmod -R 755 /var/www/html/espacopsicoeducar"
+            "sudo rm -rf /var/www/html/espacopsicoeducar && sudo mv /tmp/build /tmp/espacopsicoeducar && sudo mv /tmp/espacopsicoeducar /var/www/html && sudo chmod -R 755 /var/www/html/espacopsicoeducar"
