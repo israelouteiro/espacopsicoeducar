@@ -32,10 +32,22 @@ export const MoreInfosItemContent = styled.div.attrs({
 
 export const MoreInfosImage = styled.div.attrs({
 })`
+    position: relative;
+    overflow: hidden;
     height: 304px;
     margin-top: 26px;
-    background: rgba(255,255,255,.1) url(${props => props.image}) no-repeat center center / cover;
+    background:
+        linear-gradient(120deg, rgba(8, 24, 47, 0.5), rgba(14, 33, 59, 0.28)),
+        url(${props => props.image}) no-repeat center center / cover;
     clip-path: polygon(0 0, 100% 0, 100% 88%, 86% 100%, 0 100%);
+
+    &::before{
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(8, 20, 40, 0.28) 0%, rgba(8, 20, 40, 0.08) 44%, rgba(8, 20, 40, 0.5) 100%);
+        pointer-events: none;
+    }
 
     @media(max-width: 767px){
         margin-top: 20px;

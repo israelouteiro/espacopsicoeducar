@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 
 import { Row, Col, Container } from 'reactstrap';
 
@@ -25,6 +26,7 @@ import {
 
 const sections = [
     { id: 'inicio', title: 'Inicio' },
+    { id: 'psicologa-link', title: 'Psicóloga', type: 'route', path: '/psicologa' },
     { id: 'metodologia', title: 'Metodologia' },
     { id: 'pratica', title: 'Pratica' },
     { id: 'conceito', title: 'Conceito' },
@@ -33,18 +35,24 @@ const sections = [
     { id: 'contato', title: 'Contato' }
 ]
 
+const landSections = sections.filter((item) => item.type !== 'route')
+
 export default function Header(){
+    const history = useHistory()
+    const location = useLocation()
 
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const [activeSection, setActiveSection] = useState('inicio')
     const [scrolled, setScrolled] = useState(false)
 
-    const scrollToSection = (id) => {
+    const scrollToSection = (id, closeMenu = true) => {
         const target = document.getElementById(id)
 
         if(id === 'inicio'){
             window.scrollTo({ top: 0, behavior: 'smooth' })
-            setMobileMenuOpen(false)
+            if(closeMenu){
+                setMobileMenuOpen(false)
+            }
             return
         }
 
@@ -52,10 +60,53 @@ export default function Header(){
             target.scrollIntoView({ behavior: 'smooth', block: 'start' })
         }
 
-        setMobileMenuOpen(false)
+        if(closeMenu){
+            setMobileMenuOpen(false)
+        }
+    }
+
+    const handleLogoClick = () => {
+        if(location.pathname !== '/'){
+            history.push('/')
+            setMobileMenuOpen(false)
+            return
+        }
+
+        scrollToSection('inicio')
+    }
+
+    const handleMenuClick = (item) => {
+        if(item.type === 'route' && item.path){
+            if(location.pathname !== item.path){
+                history.push(item.path)
+            }
+            setMobileMenuOpen(false)
+            return
+        }
+
+        const targetOnCurrentPage = document.getElementById(item.id)
+        if(targetOnCurrentPage){
+            scrollToSection(item.id)
+            return
+        }
+
+        if(location.pathname !== '/'){
+            sessionStorage.setItem('pending-land-section', item.id)
+            history.push('/')
+            setMobileMenuOpen(false)
+            return
+        }
+
+        scrollToSection(item.id)
     }
 
     useEffect(() => {
+        if(location.pathname !== '/'){
+            setActiveSection(location.pathname === '/psicologa' ? 'psicologa-link' : '')
+            setScrolled(true)
+            return undefined
+        }
+
         const onScroll = () => {
             const y = window.scrollY || 0
             const marker = y + 150
@@ -63,7 +114,7 @@ export default function Header(){
             setScrolled(y > 24)
 
             let current = 'inicio'
-            sections.forEach(({ id }) => {
+            landSections.forEach(({ id }) => {
                 const element = document.getElementById(id)
                 if(element && marker >= element.offsetTop){
                     current = id
@@ -76,7 +127,7 @@ export default function Header(){
         onScroll()
         window.addEventListener('scroll', onScroll, { passive: true })
         return () => window.removeEventListener('scroll', onScroll)
-    }, [])
+    }, [location.pathname])
 
     useEffect(() => {
         if(!mobileMenuOpen){
@@ -109,7 +160,7 @@ export default function Header(){
                     <Row>
                         <Col>
                             <RowCenter>
-                                <AppLogo onClick={() => scrollToSection('inicio')} />
+                                <AppLogo onClick={handleLogoClick} />
 
                                 <HeaderLeftMenu>
                                     {
@@ -117,7 +168,7 @@ export default function Header(){
                                             <HeaderMenuItem
                                                 key={item.id}
                                                 active={activeSection === item.id}
-                                                onClick={() => scrollToSection(item.id)}
+                                                onClick={() => handleMenuClick(item)}
                                             >
                                                 { item.title }
                                             </HeaderMenuItem>
@@ -157,7 +208,7 @@ export default function Header(){
                                         <HeaderMobileItem
                                             key={item.id}
                                             active={activeSection === item.id}
-                                            onClick={() => scrollToSection(item.id)}
+                                            onClick={() => handleMenuClick(item)}
                                         >
                                             { item.title }
                                         </HeaderMobileItem>

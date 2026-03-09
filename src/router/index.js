@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import Landpage from 'screens/Landpage' 
+import Psychologist from 'screens/Psychologist'
 import NotFound from 'screens/NotFound' 
 
 import Login from 'screens/Authentication/Login' 
@@ -22,6 +23,7 @@ export default function AppRouter() {
         <div>
           <Switch>
             <Route path="/" exact> <Landpage /> </Route> 
+            <Route path="/psicologa" exact> <Psychologist /> </Route>
             
             <Route path="/login" exact> <Login /> </Route> 
             <Route path="/register" exact> <Register /> </Route> 
